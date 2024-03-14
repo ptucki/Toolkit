@@ -1,0 +1,103 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 13,
+    "patch": 0
+  },
+
+  "configurePresets": [
+    {
+      "name": "config-base",
+      "hidden": true,
+      "displayName": "base Configuration",
+      "description": "Default build using Ninja generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      }
+    },
+    {
+      "name": "config-debug-x64",
+      "displayName": "Debug x64",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Debug)",
+      "inherits": "config-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "config-release-x64",
+      "displayName": "Release x64",
+      "description": "Sets release build type",
+      "inherits": "config-debug-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "config-debug-x86",
+      "displayName": "Debug x86",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Debug)",
+      "inherits": "config-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "config-release-x86",
+      "displayName": "Release x86",
+      "description": "Sets release build type",
+      "inherits": "config-debug-x86",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+
+  "buildPresets": [
+    {
+      "name": "build-base",
+      "hidden": true,
+      "configurePreset": "config-debug-x64"
+    },
+    {
+      "name": "build-debug-x64",
+      "displayName": "Debug x64",
+      "inherits": "build-base"
+    },
+    {
+      "name": "build-release-x64",
+      "displayName": "Release x64",
+      "inherits": "build-base",
+      "configurePreset": "config-release-x64"
+    },
+    {
+      "name": "build-debug-x86",
+      "displayName": "Debug x86",
+      "inherits": "build-base"
+    },
+    {
+      "name": "build-release-x86",
+      "displayName": "Release x86",
+      "inherits": "build-base",
+      "configurePreset": "config-release-x64"
+    }
+  ]
+  //"testPresets": [
+  //  {
+  //    // ...
+  //  }
+  //]
+}
