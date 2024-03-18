@@ -2,3 +2,6 @@
 
 build
 install
+
+# generated files
+include

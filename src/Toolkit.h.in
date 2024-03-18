@@ -1,0 +1,7 @@
+#ifndef TOOLKIT_H
+#define TOOLKIT_H
+
+/* All included headers */
+
+${TOOLKIT_HEADER_DEFINES}
+#endif // !TOOLKIT_H
